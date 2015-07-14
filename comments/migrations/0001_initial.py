@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('timestamp', models.IntegerField()),
+                ('comment_url', models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
@@ -30,7 +31,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=255)),
+                ('speaker', models.CharField(max_length=255)),
                 ('duration', models.IntegerField()),
+                ('permalink_url', models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
@@ -44,5 +47,10 @@ class Migration(migrations.Migration):
             model_name='comment',
             name='user',
             field=models.ForeignKey(to='comments.User'),
+        ),
+        migrations.AddField(
+            model_name='comment',
+            name='track',
+            field=models.ForeignKey(to='comments.Track')
         ),
     ]
